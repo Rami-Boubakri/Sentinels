@@ -1,6 +1,6 @@
 # 🛡️ SENTINELS — AI-Powered Multi-Agent NPL Management System
 
-> An enterprise-grade, real-time multi-agent AI platform built for STB Bank Tunisia to detect, analyze, and orchestrate responses to Non-Performing Loan (NPL) risks across banking departments.
+> An enterprise-grade, real-time multi-agent AI platform built for Banks to detect, analyze, and orchestrate responses to Non-Performing Loan (NPL) risks across banking departments.
 
 ---
 
@@ -161,14 +161,6 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000)
-
----
-
-## 📸 Screenshots
-
-> Dashboard → Submit Event → Live Pipeline → Department Reports
-
-*Add screenshots here after deployment*
 
 ---
 
