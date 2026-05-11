@@ -14,33 +14,16 @@ Built as a proof-of-concept for STB Bank's NPL governance pipeline, it demonstra
 
 ## 🏗️ Architecture
 
-```
-Input Event (Operator / API)
-        │
-        ▼
-┌─────────────────────┐
-│   Security Layer    │  ← Prompt injection scan, input validation,
-│                     │    rate limiting, sanitization
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────┐
-│    Orchestrator     │  ← Routes event to relevant departments
-│  (Routing Matrix)   │    based on event type + context
-└────────┬────────────┘
-         │
-    ┌────┴─────────────────────────┐
-    ▼          ▼          ▼        ▼
- DIR_RISQUE  DIR_SFAX  DIR_GGEI  DIR_ALM  ...6 agents total
-    │          │          │        │
-    └──────────┴──────────┴────────┘
-                    │
-                    ▼
-         Structured JSON Reports
-                    │
-                    ▼
-         Live SSE Stream → Frontend Dashboard
-```
+![Sentinels Architecture — AI-Orchestrated Credit Risk & NPL Prevention System](./docs/Architecture.png)
+
+The system follows a 6-stage pipeline:
+
+1. **Input** — Loan application or banking event ingested via API
+2. **Security Layer** — Prompt injection detection, data sanitization, authentication, zero-trust checks, and quarantine for suspicious input
+3. **Orchestrator (The Brain)** — Analyzes the event, uses a smart routing matrix, and activates only the relevant departments (parallel or sequential) to reduce alert fatigue and ensure GDPR data minimization
+4. **Department Analysis Agents** — Six specialized agents (Surveillance Risque Crédit, Analyse Crédit GGEI, Données Analytiques, Direction Régionale Sfax, Contrôle de Gestion & ALM, Garanties) each produce a structured risk report
+5. **Department Worker Dashboards (HITL)** — Human-in-the-loop validation step where department workers can validate, invalidate, or request a rewrite of each agent's output
+6. **Department Execution Agents** — Approved analyses are routed to execution agents that apply changes (risk classification updates, credit limit adjustments, restructuring offers, collateral records, coverage metrics, etc.)
 
 ---
 
